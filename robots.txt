@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://download-youtube-thumbnail.github.io/sitemap.xml

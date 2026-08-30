@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Download Youtube Thumbnail — Free HD Thumbnail Grabber</title>
+<meta name="description" content="Paste any YouTube video URL and instantly download its thumbnail in every available resolution — free, fast, no sign-up.">
+<link rel="canonical" href="https://download-youtube-thumbnail.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Download Youtube Thumbnail">
+<meta property="og:title" content="YouTube Thumbnail Downloader — Free HD Thumbnail Grabber">
+<meta property="og:description" content="Paste any YouTube video URL and instantly download its thumbnail in every available resolution — free, fast, no sign-up.">
+<meta property="og:url" content="https://download-youtube-thumbnail.github.io/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="YouTube Thumbnail Downloader — Free HD Thumbnail Grabber">
+<meta name="twitter:description" content="Paste any YouTube video URL and instantly download its thumbnail in every available resolution — free, fast, no sign-up.">
+<link rel="stylesheet" href="css/style.css?v=8">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Download Youtube Thumbnail",
+  "url": "https://download-youtube-thumbnail.github.io/",
+  "description": "Paste any YouTube video URL and instantly download its thumbnail in every available resolution — free, fast, no sign-up.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any (runs in browser)",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo">
+      <span>Download Youtube Thumbnail</span>
+    </a>
+    <nav class="header-nav">
+      <a href="about.html">About</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <button type="button" class="menu-toggle" id="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-nav-backdrop" id="mobile-nav-backdrop" hidden></div>
+<nav class="mobile-nav" id="mobile-nav" aria-label="Mobile">
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="privacy.html">Privacy Policy</a>
+  <a href="contact.html">Contact</a>
+</nav>
+
+<main>
+  <section class="hero container">
+    <h1>YouTube Thumbnail Downloader</h1>
+    <p class="subtitle">Paste a YouTube video link below to grab its thumbnail in every available resolution — instantly, and completely free.</p>
+
+    <form id="thumb-form" class="thumb-form" autocomplete="off">
+      <input
+        type="text"
+        id="url-input"
+        placeholder="Paste YouTube video URL"
+        aria-label="YouTube video URL"
+        required
+      >
+      <button type="submit">Get Thumbnails</button>
+    </form>
+    <p id="error-msg" class="error-msg" hidden></p>
+  </section>
+
+  <section id="results" class="results container">
+    <h2 id="results-heading" hidden>Thumbnails</h2>
+    <div id="results-grid" class="results-grid"></div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p>&copy; <span id="year"></span> Download Youtube Thumbnail. Not affiliated with YouTube or Google.</p>
+  </div>
+</footer>
+
+<script src="js/nav.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>
