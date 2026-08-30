@@ -109,6 +109,7 @@ form.addEventListener('submit', (e) => {
     return;
   }
 
+  input.value = `https://www.youtube.com/watch?v=${videoId}`;
   buildResults(videoId);
 });
 
