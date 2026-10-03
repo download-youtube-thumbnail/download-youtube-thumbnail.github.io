@@ -99,18 +99,55 @@ resultsGrid.addEventListener('click', (e) => {
   downloadImage(btn.dataset.src, btn.dataset.filename);
 });
 
-form.addEventListener('submit', (e) => {
-  e.preventDefault();
-  clearError();
+// Tracks the video the grid was last built for, so auto-detection stays quiet
+// when the input settles on a link we already fetched.
+let lastFetchedId = null;
+
+const AUTO_DETECT_DELAY = 350;
+let autoDetectTimer = null;
+
+// `force` is for explicit submits: it reports bad input and refetches even an
+// unchanged link. Auto-detection stays silent instead, since a half-typed URL
+// isn't a mistake yet.
+function fetchFromInput({ force = false } = {}) {
+  clearTimeout(autoDetectTimer);
 
   const videoId = extractVideoId(input.value);
   if (!videoId) {
-    showError('That doesn\'t look like a valid YouTube video URL. Try something like https://www.youtube.com/watch?v=dQw4w9WgXcQ');
+    if (force) {
+      showError('That doesn\'t look like a valid YouTube video URL. Try something like https://www.youtube.com/watch?v=dQw4w9WgXcQ');
+    }
     return;
   }
 
+  clearError();
   input.value = `https://www.youtube.com/watch?v=${videoId}`;
+
+  if (!force && videoId === lastFetchedId) return;
+  lastFetchedId = videoId;
   buildResults(videoId);
+}
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  clearError();
+  fetchFromInput({ force: true });
+});
+
+// A pasted link is complete the moment it lands, so skip the debounce. The
+// input value is only updated after the event fires, hence the deferred read.
+input.addEventListener('paste', () => {
+  setTimeout(() => fetchFromInput(), 0);
+});
+
+// Covers typing, drag-and-drop, autofill and middle-click paste.
+input.addEventListener('input', () => {
+  clearTimeout(autoDetectTimer);
+  if (!input.value.trim()) {
+    clearError();
+    return;
+  }
+  autoDetectTimer = setTimeout(() => fetchFromInput(), AUTO_DETECT_DELAY);
 });
 
 function buildResults(videoId) {
